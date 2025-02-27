@@ -16,6 +16,8 @@ export default function PatientsPage() {
     doctor: '',
     doctorId: 2,
     price: 0,
+    lat: 0,
+    lng: 0,
   });
   const [patients, setPatients] = useState([]);
   const { doctors, setDoctors } = useContext(DoctorsContext);
@@ -30,6 +32,20 @@ export default function PatientsPage() {
   useEffect(() => {
     if (doctors.length) {
       return;
+    }
+
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log('POSICION', position);
+
+        console.log('LATITUD', position.coords.latitude);
+        console.log('LONGITUD', position.coords.longitude);
+
+        setPatientAttribute('lat', position.coords.latitude);
+        setPatientAttribute('lng', position.coords.longitude);
+      });
+    } else {
+      alert('No se puede obtener la ubicacion');
     }
 
     getDoctors()
@@ -136,18 +152,24 @@ export default function PatientsPage() {
                       <th scope="col">Fecha</th>
                       <th scope="col">Doctor</th>
                       <th scope="col">Valor Consulta</th>
+                      <th scope="col">Ubicacion</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    {patients.map(({ name, date, doctor, price }, index) => (
-                      <tr key={index}>
-                        <td>{name}</td>
-                        <td>{date.split('-').reverse().join('-')}</td>
-                        <td>{doctor}</td>
-                        <td>{price.toLocaleString()}</td>
-                      </tr>
-                    ))}
+                    {patients.map(
+                      ({ name, date, doctor, price, lat, lng }, index) => (
+                        <tr key={index}>
+                          <td>{name}</td>
+                          <td>{date.split('-').reverse().join('-')}</td>
+                          <td>{doctor}</td>
+                          <td>{price.toLocaleString()}</td>
+                          <td>
+                            {lat} - {lng}
+                          </td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </Container>
