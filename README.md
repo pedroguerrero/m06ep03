@@ -38,7 +38,7 @@ Implementación de un dispositivo de geolocalización para el seguimiento de pac
 ## Consumo de API Externa para Datos Médicos
 Implementación de una API para la consulta de doctores.
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/pedroguerrero/m06ep03/blob/main/public/captura3.png)
 
 ## 🔧 Tecnologías utilizadas
 
