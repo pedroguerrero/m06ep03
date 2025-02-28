@@ -26,14 +26,17 @@ docker-compose up
 Luego ir a la siguiente url [http://localhost:8080](http://localhost:8080) para visualizar el sitio
 
 ## Integración de Service Worker para Gestión Avanzada de Caché
+Implementación de un Service Worker para la gestión avanzada de caché
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/pedroguerrero/m06ep03/blob/main/public/captura2.png)
 
 ## Acceso a Periféricos del Sistema Operativo
+Implementación de un dispositivo de geolocalización para el seguimiento de pacientes.
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/pedroguerrero/m06ep03/blob/main/public/captura1.png)
 
 ## Consumo de API Externa para Datos Médicos
+Implementación de una API para la consulta de doctores.
 
 ![alt text](http://url/to/img.png)
 
