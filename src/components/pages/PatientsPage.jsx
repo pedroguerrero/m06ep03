@@ -8,6 +8,7 @@ import Container from '../components/Container';
 import { DoctorsContext } from '../../store/DoctorsContext';
 import AppointmentForm from '../components/AppointmentForm';
 import { addPatientToDB, getPatientsFromDB } from '../utils/db';
+import Map from '../components/Map';
 
 export default function PatientsPage() {
   const [patient, setPatient] = useState({
@@ -32,20 +33,6 @@ export default function PatientsPage() {
   useEffect(() => {
     if (doctors.length) {
       return;
-    }
-
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log('POSICION', position);
-
-        console.log('LATITUD', position.coords.latitude);
-        console.log('LONGITUD', position.coords.longitude);
-
-        setPatientAttribute('lat', position.coords.latitude);
-        setPatientAttribute('lng', position.coords.longitude);
-      });
-    } else {
-      alert('No se puede obtener la ubicacion');
     }
 
     getDoctors()
@@ -130,8 +117,22 @@ export default function PatientsPage() {
                       doctorId: 0,
                       doctor: '',
                       price: 0,
+                      lat: 0,
+                      lng: 0,
                     });
-                    setShowModal(true);
+
+                    if ('geolocation' in navigator) {
+                      navigator.geolocation.getCurrentPosition((position) => {
+                        setPatientAttribute('lat', position.coords.latitude);
+                        setPatientAttribute('lng', position.coords.longitude);
+                      });
+
+                      setShowModal(true);
+                    } else {
+                      alert('No se puede obtener la ubicacion');
+
+                      setShowModal(true);
+                    }
                   }}
                 >
                   Agendar Paciente
@@ -165,7 +166,7 @@ export default function PatientsPage() {
                           <td>{doctor}</td>
                           <td>{price.toLocaleString()}</td>
                           <td>
-                            {lat} - {lng}
+                            <Map lat={lat} lng={lng} />
                           </td>
                         </tr>
                       )
