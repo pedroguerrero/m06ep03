@@ -11,7 +11,7 @@ export default function Map({ lat, lng }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={[lat, lng]}>
-        <Popup>This is a popup</Popup>
+        <Popup>Ubicacion del paciente</Popup>
       </Marker>
     </MapContainer>
   );
