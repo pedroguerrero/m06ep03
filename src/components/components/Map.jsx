@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
-export default function Map({ lat, lng }) {
+export default function Map({ lat, lng, name }) {
   lat = lat || -33.4468662;
   lng = lng || -70.6616838;
   return (
@@ -11,7 +11,9 @@ export default function Map({ lat, lng }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Marker position={[lat, lng]}>
-        <Popup>Ubicacion del paciente</Popup>
+        <Popup>
+          Nombre de <strong>{name}</strong>
+        </Popup>
       </Marker>
     </MapContainer>
   );
@@ -20,4 +22,5 @@ export default function Map({ lat, lng }) {
 Map.propTypes = {
   lat: PropTypes.number,
   lng: PropTypes.number,
+  name: PropTypes.string,
 };

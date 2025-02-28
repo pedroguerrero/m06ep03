@@ -166,7 +166,7 @@ export default function PatientsPage() {
                           <td>{doctor}</td>
                           <td>{price.toLocaleString()}</td>
                           <td>
-                            <Map lat={lat} lng={lng} />
+                            <Map lat={lat} lng={lng} name={name} />
                           </td>
                         </tr>
                       )
